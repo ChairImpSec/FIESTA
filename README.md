@@ -114,7 +114,7 @@ Each **`<circuit-name>`** directory contains the following directories:
 - **`00-design`:** Contains the circuit designs/netlist (verilog files) that were analyzed.
 - **`01-functional-correct`:** Includes a simple configuration that can be used to verify the correctness of the given netlist and its simulation.
 - **`02-experiments`:** Contains all configurations to compute the experiments using the most recent version of FIESTA.
-- **`original-results`:** Provides the results used to create the Figures in the original publication ([Fault Injection Evaluation with Statistical Analysis - How to Deal with Nearly Fabricated Large Circuits](https://eprint.iacr.org/2025/1287).
+- **`original-results`:** Provides the results used to create the Figures in the original publication ([Fault Injection Evaluation with Statistical Analysis - How to Deal with Nearly Fabricated Large Circuits](https://eprint.iacr.org/2025/1287]).
 
 > [!NOTE]
 > The configurations in `original-results` cannot be used for the current version of FIESTA, as some options were renamed for clarity.
