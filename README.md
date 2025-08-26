@@ -40,7 +40,7 @@ To use FIESTA/PROLEAD, you must have a working installation of the [Nix package 
    make release
    ```
 
-Now you are ready to execute PROLEAD/FIESTA.
+Now you are ready to execute FIESTA/PROLEAD.
 
  > [!TIP]
  > For detailed installation steps, see the **[PROLEAD Wiki](https://github.com/ChairImpSec/PROLEAD/wiki/Installation)**.
