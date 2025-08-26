@@ -260,7 +260,7 @@ For a smaller probability, such as ```aes-unprotected/02-experiments/sa0-p2e024/
 
 > [!NOTE]
 > Currently, we recompute the results using the new configuration version.
-> These computations follow an improved report format, which is in line with [PROLEAD]'s logging to increase uniformity.
+> These computations follow an improved report format, which is in line with [PROLEAD](https://github.com/ChairImpSec/PROLEAD)'s logging to increase uniformity.
 > After the computation has completed, they will be added.
 
 > [!NOTE]
