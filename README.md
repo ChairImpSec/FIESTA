@@ -103,7 +103,8 @@ The second hierarchical level (nang45, sky130) divides the experiments conducted
 - **`sky130`**: Experiments studying designs implemented using the [Skywater 130 PDK](https://skywater-pdk.readthedocs.io/en/main/).
 
 The next hierarchical level (e.g.,aes-hpc3-pipelined-d1, ..., aes-unprotected) identifies the circuits under investigation.
-This is summarized in the following table:
+
+This structure is summarized in the following table:
 | Level | Description |
 |-------|-------------|
 | **`asic/`** | Top-level directory for ASIC designs (FPGA support may be added later). |
@@ -151,8 +152,9 @@ The label column additionally provides information on which config was used to g
 ### Experiment Naming Scheme
 The 02-experiments subdirectories of the **`<circuit-name>`** directories given in the [table above](#mapping-figures-to-directories) contain multiple subdirectories with names, such as, sa0-p2e007.
 These strings are build using the following naming scheme: <fault-type>-<probability>.
-The `<fault-type>` is either sa0 (stuck-at-zero), sa1 (stuck-at-one), or tgl (toggle).
-The *`<probability>` is further divided in two parts: `p<base>e<exponent>`.
+- The **`<fault-type>`** is either sa0 (stuck-at-zero), sa1 (stuck-at-one), or tgl (toggle).
+- The **`<probability>`** is further divided in two parts: `p<base>e<exponent>`.
+
 Based on this naming convention `<probability>` is interpreted as `<base>`<sup>-`<exponent>`</sup>.
 Thus, sa0-p2e007 contains the configuration for an experiment where stuck-at-zero faults are induced with probability 2<sup>-7</sup>.
 Inside these folders, following the `<fault-type>-<probability>` naming scheme, you may find another directory level.
@@ -177,7 +179,6 @@ Successfully found buffer cell with identifier "BUF_X1" and others.
 ```
 where <...> simply replaces multiple logger lines that correspond to file parsing.
 Then the simulation process is started, and FIESTA reports:
-
 
 
 ```
