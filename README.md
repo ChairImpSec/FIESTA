@@ -95,7 +95,7 @@ examples/fiesta
 ```
 
 ### 📂 Directory Structure
-The examples/fiesta directory contains a single top-level subdirectory, `asic`, which organizes all ASIC-related designs.
+The `<examples/fiesta>` directory contains a single top-level subdirectory, `asic`, which organizes all ASIC-related designs.
 Future work may introduce additional categories (e.g., FPGAs) alongside `asic`.
 
 The second hierarchical level (nang45, sky130) divides the experiments conducted in [Fault Injection Evaluation with Statistical Analysis - How to Deal with Nearly Fabricated Large Circuits](https://eprint.iacr.org/2025/1287), into two parts:
