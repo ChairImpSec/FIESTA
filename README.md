@@ -245,7 +245,7 @@ To reproduce the result of Figures 7 to 10, the following 3 lines must be consid
         p_u: 1
 ```
 
-Here p_l indicates the lower boundaries of the advantage of the adversary (in the FIESTA paper denoted with $(\mu^\ell, \mu^u)$.
+Here $p_l$ indicates the lower boundaries of the advantage of the adversary (in the FIESTA paper denoted with $(\mu^\ell, \mu^u)$.
 $\mu^\ell$ is the lower bound, while $\mu^u$ is the upper bound.
 Note that the previous three lines relate to ```aes-unprotected/02-experiments/sa0-p2e006/all-cells```.
 For a smaller probability, such as ```aes-unprotected/02-experiments/sa0-p2e024/all-cells```, the results would be
