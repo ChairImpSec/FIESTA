@@ -1,6 +1,6 @@
 # FIESTA
 
-[![Paper](https://img.shields.io/badge/Paper-IACR%20ePrint%202025.1287-blue)](https://eprint.iacr.org/2025/1287)
+[![IACR ePrint](https://img.shields.io/badge/Paper-IACR%20ePrint%202025.1287-blue)](https://eprint.iacr.org/2025/1287)
 [![PROLEAD](https://img.shields.io/badge/Part%20of-PROLEAD-green)](https://github.com/ChairImpSec/PROLEAD)
 [![Nix](https://img.shields.io/badge/Requires-Nix%20Package%20Manager-5277C3)](https://nixos.org/)
 
