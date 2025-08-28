@@ -206,7 +206,7 @@ The progress of the simulation is indicated by
 <...>
 [   5184.18] Step:  5/15, Simulation: 1023/1023
 ```
-Where <...> replaces furhter intermediate steps.
+where <...> replaces furhter intermediate steps.
 
 The computed result is reported with the following format:
 ```
