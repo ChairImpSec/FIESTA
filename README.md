@@ -253,8 +253,8 @@ The computed result is reported with the following format:
 [<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
 [<TIMESTAMP>] Evaluation done in 53695.380127 seconds.
 ```
-This repeats the header and the last line of the simulation-progress for better readability.
-Therefore, the confidence interval for `aes-unprotected/02-experiments/sa0-p2e007/all-cells` is computed as (0.99998616, 1.00000000).
+These log-entries repeat the header and the last line of the simulation-progress for better readability.
+The confidence interval for `aes-unprotected/02-experiments/sa0-p2e007/all-cells` is computed as (0.99998616, 1.00000000).
 
 > [!NOTE]
 > Currently, we recompute the results using the new configuration version.
