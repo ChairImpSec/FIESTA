@@ -51,7 +51,7 @@ Now you are ready to execute FIESTA/PROLEAD.
 
 In the root folder of the cloned repository, you will find the following folder structure:
 
-``` plaintext
+```
 examples/fiesta
 └── asic
     ├── nang45
@@ -166,95 +166,97 @@ In `all-cells` all cells of the circuit are attacked, while in `storage-cells` o
 ### Running an Experiment
 Putting things together: The folder `aes-unprotected/02-experiments/sa0-p2e006/all-cells` can be used to compute the results depicted in Figure 7a for $\log_2(\varphi) = -6$, while `aes-unprotected/02-experiments/sa0-p2e026/all-cell` can be used to generate the results for $\log_2(\varphi) = -26$.
 
-When starting FIESTA with a `./run.sh` file located in any of these directories, the corresponding `config.json` is read by FIESTA.
-In all following logs `<TIMESTAMP>` replaces the date and time at which the log´ entries were created.
+When starting FIESTA with a `run.sh` file located in any of these directories, the corresponding `config.json` is read by FIESTA.
+Assume that the working directory is `aes-unprotected/02-experiments/sa0-p2e006/all-cells` and `./run.sh` is executed; then FIESTA will first report:
 
-Assume that the working directory is `aes-unprotected/02-experiments/sa0-p2e007/all-cells` and `./run.sh` is executed; then FIESTA will first report:
-
-``` plaintext
-[<TIMESTAMP>] Successfully validated the settings file.
-[<TIMESTAMP>] Successfully read the library with name "nang45".
-[<TIMESTAMP>] Successfully parsed 35 cells from the library.
-[<TIMESTAMP>] Successfully found buffer cell with identifier "BUF_X1" and others.
-[<TIMESTAMP>] Successfully read design file with topmodule "circuit"!
-[<TIMESTAMP>] ------------------------------------------------------------------------------------------------------------------------
 ```
-These log entries are produced by the parser and inform the user about some properties of the parsed settings and netlist.
-
-Before the simulation process is started, FIESTA computes and reports fundamental properties of the analysis:
-``` plaintext
-[<TIMESTAMP>] Prepare statistical evaluation of adversary 0 in the general random fault model!
-[<TIMESTAMP>] All possible faults are derived from configuration file.
-[<TIMESTAMP>] Properties of the analysis:
-[<TIMESTAMP>] ---------------------------------------------------------------------------------------------------
-[<TIMESTAMP>] | #Used Threads |      #Faults |   #Positions | Confidence Level |  Fault Probability (min / max) |
-[<TIMESTAMP>] ---------------------------------------------------------------------------------------------------
-[<TIMESTAMP>] |             6 |       394220 |         1714 |         0.999999 |            0.007812 / 0.007812 |
-[<TIMESTAMP>] ---------------------------------------------------------------------------------------------------
+Found child with key: analysis_strategy and type: string
+<...>
+Successfully validated the settings file.
+Successfully read the library with name "nang45".
+Successfully parsed 35 cells from the library.
+Successfully found buffer cell with identifier "BUF_X1" and others.
 ```
-These log entries contain the below defined key metrics:
- | Metric                                                                | Description                                                                                              |
- |-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
- | **Total sampleable faults** (`#faults`)                               | Product of the number of targeted gates (#positions) and the clock cycles available for fault injection. |
- | **Faultable gate count** (`#positions`)                               | Number of distinct gates where faults can be injected.                                                   |
- | **Confidence level**                                                  | User-configured statistical confidence for the analysis.                                                 |
- | **Fault probability range** (`Fault Probability (min / max)`)         | Minimum and maximum probability across all injectable faults.                                            |
-Note that `#faults` is the product of the gates that are targeted and the clock cycles in which a fault can be injected.
+where <...> simply replaces multiple logger lines that correspond to file parsing.
+Then the simulation process is started, and FIESTA reports:
 
-The following log header is printed at the start of the simulation to track progress:
-``` plaintext
-[<TIMESTAMP>] Analysis is starting...
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
-[<TIMESTAMP>]         Elapsed Time |        Used Memory | #Effective Faults | Lower Bound | Upper Bound | Interval Size |
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
+
 ```
-This header displays real-time metrics for each simulation step:
-
-- **Resource Metrics:** `Elapsed Time` and `Used Memory`
-- **Fault Analysis:**
-  - `#Effective Faults`: Cumulative count of effective faults across all (computed) steps
-  - `Lower Bound`/`Upper Bound`: Adversary advantage bounds derived from:
-    - Effective faults count
-    - Processed simulations
-    - User-defined confidence level ($\gamma$)
-    - `Interval Size`: Confidence interval width ($L = \mu^u - \mu^\ell$)
-
-The batch size (simulations per step) is configurable via `config.json`.
-
-The progress of the simulation is then indicated by values corresponding to the simulation header:
-``` plaintext
-[<TIMESTAMP>] |         0-00:04:08 |   0TB    0GB 831MB |   65536 /   65536 |  0.99977864 |  1.00000000 |    0.00022136 |
-[<TIMESTAMP>] |         0-00:09:35 |   0TB    0GB 831MB |  131072 /  131072 |  0.99988931 |  1.00000000 |    0.00011069 |
-[<TIMESTAMP>] |         0-00:14:58 |   0TB    0GB 831MB |  196608 /  196608 |  0.99992621 |  1.00000000 |    0.00007379 |
-[<TIMESTAMP>] |         0-00:20:32 |   0TB    0GB 831MB |  262144 /  262144 |  0.99994466 |  1.00000000 |    0.00005534 |
-[<TIMESTAMP>] |         0-00:26:19 |   0TB    0GB 831MB |  327680 /  327680 |  0.99995572 |  1.00000000 |    0.00004428 |
-[<TIMESTAMP>] |         0-00:31:43 |   0TB    0GB 831MB |  393216 /  393216 |  0.99996310 |  1.00000000 |    0.00003690 |
-[<TIMESTAMP>] |         0-00:37:08 |   0TB    0GB 831MB |  458752 /  458752 |  0.99996837 |  1.00000000 |    0.00003163 |
-[<TIMESTAMP>] |         0-00:42:33 |   0TB    0GB 831MB |  524288 /  524288 |  0.99997233 |  1.00000000 |    0.00002767 |
-[<TIMESTAMP>] |         0-14:19:44 |   0TB    0GB 831MB |  589824 /  589824 |  0.99997540 |  1.00000000 |    0.00002460 |
-[<TIMESTAMP>] |         0-14:23:35 |   0TB    0GB 831MB |  655360 /  655360 |  0.99997786 |  1.00000000 |    0.00002214 |
-[<TIMESTAMP>] |         0-14:28:39 |   0TB    0GB 831MB |  720896 /  720896 |  0.99997987 |  1.00000000 |    0.00002013 |
-[<TIMESTAMP>] |         0-14:33:56 |   0TB    0GB 831MB |  786432 /  786432 |  0.99998155 |  1.00000000 |    0.00001845 |
-[<TIMESTAMP>] |         0-14:39:09 |   0TB    0GB 831MB |  851968 /  851968 |  0.99998297 |  1.00000000 |    0.00001703 |
-[<TIMESTAMP>] |         0-14:44:19 |   0TB    0GB 831MB |  917504 /  917504 |  0.99998419 |  1.00000000 |    0.00001581 |
-[<TIMESTAMP>] |         0-14:49:38 |   0TB    0GB 831MB |  983040 /  983040 |  0.99998524 |  1.00000000 |    0.00001476 |
-[<TIMESTAMP>] |         0-14:54:55 |   0TB    0GB 831MB | 1048576 / 1048576 |  0.99998616 |  1.00000000 |    0.00001384 |
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
+[ ] Prepare simulation engin...
+[+] Simulation enging is prepared with:
+    Number of shares :1
+    Number of groups :128
+    Number of bits :1
+[+] Available fault locations: 394220
 ```
-This visualizes the decrease of the Interval Size $L$ for increasing number of simulations.
+This gives some information on what is evaluated in the following.
+Specifically, the number of faults that can be injected is reported 394220.
+Note that this number is the product of the gates that are targeted and the clock cycles in which a fault can be injected.
+The lines:
+```
+    Number of shares :1
+    Number of groups :128
+    Number of bits :1
+```
+are debug prints and can be ignored.
+
+The progress of the simulation is indicated by
+```
+[0.00048204] Step:  3/15, Simulation:    0/1023
+<...>
+[   5184.18] Step:  5/15, Simulation: 1023/1023
+```
+where <...> replaces furhter intermediate steps.
 
 The computed result is reported with the following format:
-``` plaintext
-[<TIMESTAMP>] Final Report:
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
-[<TIMESTAMP>] |       Elapsed Time |        Used Memory | #Effective Faults | Lower Bound | Upper Bound | Interval Size |
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
-[<TIMESTAMP>] |         0-14:54:55 |   0TB    0GB 831MB | 1048576 / 1048576 |  0.99998616 |  1.00000000 |    0.00001384 |
-[<TIMESTAMP>] -----------------------------------------------------------------------------------------------------------
-[<TIMESTAMP>] Evaluation done in 53695.380127 seconds.
 ```
-This repeats the header and the last line of the simulation-progress for better readability.
-Therefore, the confidence interval for `aes-unprotected/02-experiments/sa0-p2e007/all-cells` is computed as (0.99998616, 1.00000000).
+-------------------- Evaluation Completed --------------------
+     Computation Time: 5184.55 seconds!
+     Individual Faults: 394220
+     Faulted Cycles:
+        1
+        2
+        3
+        <...>
+        228
+        229
+        230
+     Effective Faults Per Thread:
+        196608
+        196608
+        131072
+        131072
+        196608
+        196608
+     Effective Faults Total:
+         Success 1048576
+         Trials 1048576
+
+
+    Probability faults lead to non correctable fault:
+        p_l: 0.99998616
+        p_u: 1
+```
+where <...> replaces the numbers 4 to 227.
+To reproduce the result of Figures 7 to 10, the following 3 lines must be considered:
+```
+    Probability faults lead to non correctable fault:
+        p_l: 0.99998616
+        p_u: 1
+```
+
+Here $p_l$ indicates the lower boundaries of the advantage of the adversary (in the FIESTA paper denoted with $(\mu^\ell, \mu^u)$.
+$\mu^\ell$ is the lower bound, while $\mu^u$ is the upper bound.
+Note that the previous three lines relate to ```aes-unprotected/02-experiments/sa0-p2e006/all-cells```.
+For a smaller probability, such as ```aes-unprotected/02-experiments/sa0-p2e024/all-cells```, the results would be
+
+```
+    Probability faults lead to non correctable fault:
+        p_l: 0.0076496222
+        p_u: 0.0084395282
+```
+
+
 
 > [!NOTE]
 > Currently, we recompute the results using the new configuration version.
@@ -265,4 +267,3 @@ Therefore, the confidence interval for `aes-unprotected/02-experiments/sa0-p2e00
 > FIESTA was submitted as artifact to CHES2025.
 > To keep our changes since the initial artifact submission transparent, we have tagged the state initially submitted with `fiesta-initial`.
 > This applies to both repositories, [FIESTA](https://github.com/ChairImpSec/FIESTA) and [PROLEAD](https://github.com/ChairImpSec/PROLEAD).
-> An extended documentation for the initial state can be found in the legacy version of the [README.md](legacy/README.md).
